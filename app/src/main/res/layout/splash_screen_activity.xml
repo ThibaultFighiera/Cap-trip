@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".splash.SplashScreen"
+        android:background="?colorPrimary">
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/star_background"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/splash_name"
+            android:textColor="@color/warm_grey"
+            android:textSize="72sp"
+            android:letterSpacing="0.4"/>
+
+</FrameLayout>

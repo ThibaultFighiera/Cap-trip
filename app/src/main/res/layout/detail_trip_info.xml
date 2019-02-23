@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:showIn="@layout/detailed_content">
+
+
+    <TextView
+            android:id="@+id/detailInfoTitle"
+            style="@style/Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            tools:text="@tools:sample/lorem" />
+
+    <TextView
+            android:id="@+id/detailInfoValue"
+            style="@style/Name.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:text="@tools:sample/us_phones" />
+</LinearLayout>

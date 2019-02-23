@@ -1,0 +1,23 @@
+{
+    "id": 1,
+    "pilot": {
+      "name": "Virgin",
+      "avatar": "/static/airlines/virgin.png",
+      "rating": 5.0
+    },
+    "distance": {
+      "value": 5069,
+      "unit": "km"
+    },
+    "duration": 32400000,
+    "pick_up": {
+      "name": "Paris",
+      "picture": "/static/locations/paris.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "New York",
+      "picture": "/static/locations/new-york.png",
+      "date": "2017-12-09T23:35:51Z"
+    }
+  }

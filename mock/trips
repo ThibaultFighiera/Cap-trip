@@ -1,0 +1,163 @@
+[
+  {
+    "id": 1,
+    "pilot": {
+      "name": "Virgin",
+      "avatar": "/static/airlines/virgin.png",
+      "rating": 5.0
+    },
+    "distance": {
+      "value": 5069,
+      "unit": "km"
+    },
+    "duration": 32400000,
+    "pick_up": {
+      "name": "Paris",
+      "picture": "/static/locations/paris.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "New York",
+      "picture": "/static/locations/new-york.png",
+      "date": "2017-12-09T23:35:51Z"
+    }
+  },
+  {
+    "id": 2,
+    "pilot": {
+      "name": "Emirates Airlines",
+      "avatar": "/static/airlines/emirats.png",
+      "rating": 0.0
+    },
+    "distance": {
+      "value": 4813,
+      "unit": "km"
+    },
+    "duration": 25200000,
+    "pick_up": {
+      "name": "New York",
+      "picture": "/static/locations/new-york.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "London",
+      "picture": "/static/locations/london.png",
+      "date": "2017-12-09T21:35:51Z"
+    }
+  },
+  {
+    "id": 3,
+    "pilot": {
+      "name": "Lufthansa",
+      "avatar": "/static/airlines/lufthansa.png",
+      "rating": 4.0
+    },
+    "distance": {
+      "value": 9006,
+      "unit": "km"
+    },
+    "duration": 33840000,
+    "pick_up": {
+      "name": "Roma",
+      "picture": "/static/locations/roma.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Tokyo",
+      "picture": "/static/locations/tokyo.png",
+      "date": "2017-12-09T23:35:51Z"
+    }
+  },
+  {
+    "id": 4,
+    "pilot": {
+      "name": "British Airways",
+      "avatar": "/static/airlines/british_airways.png",
+      "rating": 4.2
+    },
+    "distance": {
+      "value": 1445,
+      "unit": "km"
+    },
+    "duration": 72000000,
+    "pick_up": {
+      "name": "London",
+      "picture": "/static/locations/london.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Roma",
+      "picture": "/static/locations/roma.png",
+      "date": "2017-12-09T16:35:51Z"
+    }
+  },
+  {
+    "id": 5,
+    "pilot": {
+      "name": "Malaysia Airlines",
+      "avatar": "/static/airlines/malaysia.png",
+      "rating": 5.0
+    },
+    "distance": {
+      "value": 8334,
+      "unit": "km"
+    },
+    "duration": 48240000,
+    "pick_up": {
+      "name": "Tokyo",
+      "picture": "/static/locations/tokyo.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "London",
+      "picture": "/static/locations/london.png",
+      "date": "2017-12-10T03:35:51Z"
+    }
+  },
+  {
+    "id": 6,
+    "pilot": {
+      "name": "Air France",
+      "avatar": "/static/airlines/air_france.png",
+      "rating": 4.0
+    },
+    "distance": {
+      "value": 1100,
+      "unit": "km"
+    },
+    "duration": 7600000,
+    "pick_up": {
+      "name": "Roma",
+      "picture": "/static/locations/roma.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Paris",
+      "picture": "/static/locations/paris.png",
+      "date": "2017-12-09T16:55:51Z"
+    }
+  },
+  {
+    "id": 7,
+    "pilot": {
+      "name": "Air France",
+      "avatar": "/static/airlines/air_france.png",
+      "rating": 4.0
+    },
+    "distance": {
+      "value": 8468,
+      "unit": "km"
+    },
+    "duration": 44820000,
+    "pick_up": {
+      "name": "Tokyo",
+      "picture": "/static/locations/tokyo.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Paris",
+      "picture": "/static/locations/paris.png",
+      "date": "2017-12-10T02:35:51Z"
+    }
+  }
+]

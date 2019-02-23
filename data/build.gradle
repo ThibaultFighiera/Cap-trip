@@ -1,0 +1,58 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+
+    compileSdkVersion versions.compileSdk
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "SERVER_SCHEME", '"https"'
+        buildConfigField "String", "SERVER_BASE_URL", '"raw.githubusercontent.com"'
+        buildConfigField "String", "SERVER_PAYLOAD", '"ThibaultFighiera/Cap-trip/master/mock/"'
+        buildConfigField "String", "SERVER_IMAGE_URL", '"https://github.com/ThibaultFighiera/Cap-trip/raw/master/mock/"'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':domain')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$appcompat"
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
+
+    // Gson
+    implementation "com.google.code.gson:gson:$gson"
+
+    //RX java
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid"
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava"
+
+    testImplementation "junit:junit:$test_versions.junit"
+    testImplementation("org.mockito:mockito-inline:$test_versions.mockito_core")
+    androidTestImplementation "androidx.test.ext:junit:$test_versions.xJunit"
+}

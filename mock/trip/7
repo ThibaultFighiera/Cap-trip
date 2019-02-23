@@ -1,0 +1,23 @@
+{
+    "id": 7,
+    "pilot": {
+      "name": "Air France",
+      "avatar": "/static/airlines/air_france.png",
+      "rating": 4.0
+    },
+    "distance": {
+      "value": 8468,
+      "unit": "km"
+    },
+    "duration": 44820000,
+    "pick_up": {
+      "name": "Tokyo",
+      "picture": "/static/locations/tokyo.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Paris",
+      "picture": "/static/locations/paris.png",
+      "date": "2017-12-10T02:35:51Z"
+    }
+  }

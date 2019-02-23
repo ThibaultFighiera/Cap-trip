@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="last_trips">Last Trips</string>
+    <string name="retry">Retry</string>
+    <string name="departure">Departure</string>
+    <string name="arrival">Arrival</string>
+    <string name="your_pilot_photo">Your pilot\'s photo</string>
+</resources>

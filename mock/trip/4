@@ -1,0 +1,23 @@
+  {
+    "id": 4,
+    "pilot": {
+      "name": "British Airways",
+      "avatar": "/static/airlines/british_airways.png",
+      "rating": 4.2
+    },
+    "distance": {
+      "value": 1445,
+      "unit": "km"
+    },
+    "duration": 72000000,
+    "pick_up": {
+      "name": "London",
+      "picture": "/static/locations/london.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Roma",
+      "picture": "/static/locations/roma.png",
+      "date": "2017-12-09T16:35:51Z"
+    }
+  }

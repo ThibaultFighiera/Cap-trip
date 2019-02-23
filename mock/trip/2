@@ -1,0 +1,23 @@
+{
+    "id": 2,
+    "pilot": {
+      "name": "Emirates Airlines",
+      "avatar": "/static/airlines/emirats.png",
+      "rating": 0.0
+    },
+    "distance": {
+      "value": 4813,
+      "unit": "km"
+    },
+    "duration": 25200000,
+    "pick_up": {
+      "name": "New York",
+      "picture": "/static/locations/new-york.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "London",
+      "picture": "/static/locations/london.png",
+      "date": "2017-12-09T21:35:51Z"
+    }
+  }

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intent_url_host_startrip" translatable="false">starwars.chauffeur-prive.com</string>
+    <string name="intent_url_path_trip" translatable="false">/trip/</string>
+</resources>

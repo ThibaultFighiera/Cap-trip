@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_detail">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <include
+                android:id="@+id/detailPilotContainer"
+                layout="@layout/detail_pilot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="@id/detailEndGuideline"
+                app:layout_constraintStart_toStartOf="@id/detailStartGuideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+                android:id="@+id/detail_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailPilotContainer" />
+
+        <include
+                android:id="@+id/detailDeparture"
+                layout="@layout/detail_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toStartOf="@+id/detail_center_guideline"
+                app:layout_constraintStart_toStartOf="@id/detailStartGuideline"
+                app:layout_constraintTop_toBottomOf="@+id/detail_divider" />
+
+        <include
+                android:id="@+id/detailArrival"
+                layout="@layout/detail_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="@id/detailEndGuideline"
+                app:layout_constraintStart_toStartOf="@+id/detail_center_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/detail_divider" />
+
+        <include
+                android:id="@+id/detailDistance"
+                layout="@layout/detail_trip_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/detailDeparture"
+                app:layout_constraintStart_toStartOf="@+id/detailStartGuideline"
+                app:layout_constraintEnd_toStartOf="@id/detail_center_guideline" />
+
+        <include
+                android:id="@+id/detailDuration"
+                layout="@layout/detail_trip_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/detailArrival"
+                app:layout_constraintStart_toStartOf="@+id/detail_center_guideline"
+                app:layout_constraintEnd_toStartOf="@id/detailEndGuideline" />
+
+        <include
+                android:id="@+id/detailRating"
+                layout="@layout/detail_rating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/detailDistance"
+                app:layout_constraintStart_toStartOf="@+id/detailStartGuideline"
+                app:layout_constraintEnd_toStartOf="@id/detailEndGuideline" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/detail_center_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/detailStartGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/detailEndGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="20dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

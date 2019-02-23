@@ -1,0 +1,23 @@
+{
+    "id": 3,
+    "pilot": {
+      "name": "Lufthansa",
+      "avatar": "/static/airlines/lufthansa.png",
+      "rating": 4.0
+    },
+    "distance": {
+      "value": 6539,
+      "unit": "km"
+    },
+    "duration": 33840000,
+    "pick_up": {
+      "name": "Roma",
+      "picture": "/static/locations/roma.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "Tokyo",
+      "picture": "/static/locations/tokyo.png",
+      "date": "2017-12-09T23:35:51Z"
+    }
+  }

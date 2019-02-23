@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/detailLocationType"
+            style="@style/Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/departure" />
+
+    <TextView
+            android:id="@+id/detailLocationName"
+            style="@style/Name.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:text="@tools:sample/cities" />
+
+    <TextView
+            android:id="@+id/detailLocationTime"
+            style="@style/Subtitle.Big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            tools:text="@tools:sample/date/hhmm" />
+</LinearLayout>

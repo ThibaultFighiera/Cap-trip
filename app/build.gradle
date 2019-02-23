@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+
+    compileSdkVersion versions.compileSdk
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    defaultConfig {
+        applicationId "com.fighiera.startrip"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':data')
+    implementation project(path: ':domain')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Core
+    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "androidx.annotation:annotation:$annotation"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Arch component
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.arch_lifecycle"
+
+    // UI
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    implementation "com.google.android.material:material:$material"
+
+    // Picasso
+    implementation "com.squareup.picasso:picasso:$picasso"
+
+    //RX java
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid"
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava"
+
+    testImplementation "junit:junit:$test_versions.junit"
+    testImplementation("org.mockito:mockito-inline:$test_versions.mockito_core")
+    androidTestImplementation "androidx.test.ext:junit:$test_versions.xJunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$test_versions.espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$test_versions.espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$test_versions.espresso"
+}
+
+androidExtensions {
+    experimental = true
+}

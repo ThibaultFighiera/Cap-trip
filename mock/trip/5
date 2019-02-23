@@ -1,0 +1,23 @@
+{
+    "id": 5,
+    "pilot": {
+      "name": "Malaysia Airlines",
+      "avatar": "/static/airlines/malaysia.png",
+      "rating": 5.0
+    },
+    "distance": {
+      "value": 8334,
+      "unit": "km"
+    },
+    "duration": 48240000,
+    "pick_up": {
+      "name": "Tokyo",
+      "picture": "/static/locations/tokyo.png",
+      "date": "2017-12-09T14:12:51Z"
+    },
+    "drop_off": {
+      "name": "London",
+      "picture": "/static/locations/london.png",
+      "date": "2017-12-10T03:35:51Z"
+    }
+  }

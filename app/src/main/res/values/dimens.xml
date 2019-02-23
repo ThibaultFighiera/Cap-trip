@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- List -->
+    <dimen name="list_avatar">56dp</dimen>
+
+    <!-- Details -->
+    <dimen name="detail_avatar">72dp</dimen>
+    <dimen name="detail_pickup_image">180dp</dimen>
+    <dimen name="detail_drop_off_image">180dp</dimen>
+</resources>
