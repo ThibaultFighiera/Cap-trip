@@ -50,10 +50,3 @@ class DetailViewModel(private val id: Int, private val useCase: DetailUseCase) :
         disposable?.dispose()
     }
 }
-
-class DetailViewModelFactory(private val id: Int, private val useCase: DetailUseCase) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel?> create(p0: Class<T>): T {
-        @Suppress("UNCHECKED_CAST") return DetailViewModel(id, useCase) as T
-    }
-}

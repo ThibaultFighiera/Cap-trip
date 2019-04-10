@@ -25,6 +25,9 @@ ext {
     gson = "2.8.5"
     okhttp = "3.13.1"
 
+    //DI
+    koin_version = '2.0.0-beta-3'
+
     // ensemble d'alias permettant d'avoir des nom plus parlant que ceux du package
     // => rajouter de nouvelles entrées que si le nom de base n'est pas parlant
     versions = [

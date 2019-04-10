@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.trip_item.*
 
 class TripListViewHolder(override val containerView: View?, lifecycleOwner: LifecycleOwner, private val viewModel: TripListViewModel) : LayoutContainer {
 
-
     init {
         val tripAdapter = TripListAdapter { itemId -> viewModel.displayTrip(itemId) }
         tripList.apply {

@@ -2,34 +2,36 @@ package com.fighiera.startrip.detail
 
 import android.content.Context
 import android.content.Intent
+import android.nfc.NfcAdapter.EXTRA_ID
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
 import com.fighiera.startrip.R
 import com.fighiera.startrip.common.ui.ErrorViewHolder
 import com.fighiera.startrip.detail.ui.DetailHeaderViewHolder
 import com.fighiera.startrip.detail.ui.DetailViewHolder
 import com.fighiera.startrip.detail.viewmodel.DetailViewModel
-import com.fighiera.startrip.detail.viewmodel.DetailViewModelFactory
-import com.fighiera.startrip.os.DomainLayerFactory
+import com.fighiera.startrip.list.viewmodel.TripListViewModel
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.detail_toolbar.*
+import org.koin.androidx.scope.currentScope
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.koin.getViewModel
+import org.koin.core.parameter.parametersOf
 
 class DetailActivity : AppCompatActivity() {
+
+    private val id: Int by lazy { intent.getIntExtra(EXTRA_ID, 0) }
+    private val viewModel by viewModel<DetailViewModel>(scope = currentScope, parameters = { parametersOf(id) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        initialize(intent.getIntExtra(EXTRA_ID, 0))
+        initialize()
     }
 
-    private fun initialize(id: Int) {
-        val viewModel = ViewModelProviders.of(
-            this,
-            DetailViewModelFactory(id, DomainLayerFactory.createDetailUseCase())
-        ).get(DetailViewModel::class.java)
+    private fun initialize() {
         DetailHeaderViewHolder(detailToolbar, this, viewModel)
         DetailViewHolder(detailContent, this, viewModel)
         ErrorViewHolder(window.decorView.rootView, detailContent, this, viewModel.state) { viewModel.fetchList() }
