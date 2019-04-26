@@ -36,7 +36,7 @@ ext {
             targetSdk     : 28,
             compileSdk    : 28,
             buildTools    : '28.0.3',
-            gradle        : '3.3.1',
+            gradle        : '3.4.0',
     ]
 
     test_versions = [

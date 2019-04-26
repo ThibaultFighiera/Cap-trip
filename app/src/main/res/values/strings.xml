@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Star Trip</string>
+    <string name="app_name" translatable="false">Cap Trip</string>
     <string name="splash_name" translatable="false">Cap\'\nTrip</string>
     <string name="last_trips">Derniers Voyages</string>
 
