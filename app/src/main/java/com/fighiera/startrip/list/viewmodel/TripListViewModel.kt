@@ -1,6 +1,7 @@
 package com.fighiera.startrip.list.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -15,9 +16,18 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class TripListViewModel(private val useCase: TripListUseCase) : ViewModel() {
-    val tripEntries = MutableLiveData<List<TripListItemUi>>()
-    val state = MutableLiveData<Status>()
-    val displayDetail = SingleLiveEvent<Int>()
+
+    private val _tripEntries = MutableLiveData<List<TripListItemUi>>()
+    private val _state = MutableLiveData<Status>()
+    private val _displayDetail = SingleLiveEvent<Int>()
+
+    val tripEntries: LiveData<List<TripListItemUi>>
+        get() = _tripEntries
+    val state: LiveData<Status>
+        get() = _state
+    val displayDetail: LiveData<Int>
+        get() = _displayDetail
+
     private var disposable: Disposable? = null
 
     init {
@@ -29,22 +39,22 @@ class TripListViewModel(private val useCase: TripListUseCase) : ViewModel() {
         disposable = useCase.getTripList()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { state.value = Status.LOADING }
+            .doOnSubscribe { _state.value = Status.LOADING }
             .subscribe(::onFetchSuccess, ::onFetchError)
     }
 
     private fun onFetchSuccess(tripList: TripListDomain) {
-        tripEntries.value = TripListMapper()(tripList)
-        state.value = Status.IDLE
+        _tripEntries.value = TripListMapper()(tripList)
+        _state.value = Status.IDLE
     }
 
     private fun onFetchError(throwable: Throwable?) {
         Log.e("Error", throwable?.message)
-        state.value = Status.ERROR
+        _state.value = Status.ERROR
     }
 
     fun displayTrip(itemId: Int) {
-        displayDetail.value = itemId
+        _displayDetail.value = itemId
     }
 
     override fun onCleared() {

@@ -1,6 +1,7 @@
 package com.fighiera.startrip.detail.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -17,9 +18,17 @@ import io.reactivex.schedulers.Schedulers
 
 class DetailViewModel(private val id: Int, private val useCase: DetailUseCase) : ViewModel() {
 
-    val trip = MutableLiveData<DetailItem>()
-    val header = MutableLiveData<DetailHeaderItem>()
-    val state = MutableLiveData<Status>()
+    private val _trip = MutableLiveData<DetailItem>()
+    private val _header = MutableLiveData<DetailHeaderItem>()
+    private val _state = MutableLiveData<Status>()
+
+    val trip: LiveData<DetailItem>
+        get() = _trip
+    val header: LiveData<DetailHeaderItem>
+        get() = _header
+    val state: LiveData<Status>
+        get() = _state
+
     private var disposable: Disposable? = null
 
     init {
@@ -31,19 +40,19 @@ class DetailViewModel(private val id: Int, private val useCase: DetailUseCase) :
         disposable = useCase.getTrip(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { state.value = Status.LOADING }
+            .doOnSubscribe { _state.value = Status.LOADING }
             .subscribe(::onFetchSuccess, ::onFetchError)
     }
 
     private fun onFetchSuccess(detail: TripItemDomain) {
-        trip.value = DetailItemMapper()(detail)
-        header.value = DetailHeaderMapper()(detail)
-        state.value = Status.IDLE
+        _trip.value = DetailItemMapper()(detail)
+        _header.value = DetailHeaderMapper()(detail)
+        _state.value = Status.IDLE
     }
 
     private fun onFetchError(throwable: Throwable?) {
         Log.e("Error", throwable?.message)
-        state.value = Status.ERROR
+        _state.value = Status.ERROR
     }
 
     override fun onCleared() {
