@@ -1,8 +1,5 @@
 package com.fighiera.data.repositories
 
-import androidx.annotation.WorkerThread
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.fighiera.data.entities.TripListItem
 import com.fighiera.data.ext.okhttp.RemoteRequester
 import com.fighiera.data.mappers.ListModelMapper
@@ -10,35 +7,30 @@ import com.fighiera.data.mappers.TripListItemMapper
 import com.fighiera.domain.entities.TripItemDomain
 import com.fighiera.domain.entities.TripListDomain
 import com.fighiera.domain.repositories.TripRepository
-import io.reactivex.Single
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class TripRepositoryImpl : TripRepository {
 
-    @WorkerThread
-    override fun fetchTripList(): Single<TripListDomain> {
-        return Single.fromCallable {
-            val response = RemoteRequester()
-                .apply { addPathSegment(SCHEME_TRIP_LIST) }
-                .requestJson()
-            val postsType = object : TypeToken<List<TripListItem>>() {}.type
-            val modelData = Gson().fromJson<List<TripListItem>>(response, postsType)
-            ListModelMapper()(modelData)
-        }
+    override suspend fun fetchTripList(): TripListDomain {
+        val response = RemoteRequester()
+            .apply { addPathSegment(SCHEME_TRIP_LIST) }
+            .requestJson()
+        val postsType = object : TypeToken<List<TripListItem>>() {}.type
+        val modelData = Gson().fromJson<List<TripListItem>>(response, postsType)
+        return ListModelMapper()(modelData)
     }
 
-    @WorkerThread
-    override fun fetchTrip(id: Int): Single<TripItemDomain> {
-        return Single.fromCallable {
-            val response = RemoteRequester()
-                .apply {
-                    addPathSegment(SCHEME_TRIPS)
-                    addPathSegment(id.toString())
-                }
-                .requestJson()
+    override suspend fun fetchTrip(id: Int): TripItemDomain {
+        val response = RemoteRequester()
+            .apply {
+                addPathSegment(SCHEME_TRIPS)
+                addPathSegment(id.toString())
+            }
+            .requestJson()
 
-            val modelData = Gson().fromJson<TripListItem>(response, TripListItem::class.java)
-            TripListItemMapper()(modelData)
-        }
+        val modelData = Gson().fromJson<TripListItem>(response, TripListItem::class.java)
+        return TripListItemMapper()(modelData)
     }
 
     companion object {

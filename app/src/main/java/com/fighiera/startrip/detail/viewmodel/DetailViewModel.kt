@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.fighiera.domain.entities.TripItemDomain
 import com.fighiera.domain.usecases.DetailUseCase
 import com.fighiera.startrip.common.entities.Status
@@ -12,9 +11,7 @@ import com.fighiera.startrip.detail.mapper.DetailHeaderMapper
 import com.fighiera.startrip.detail.mapper.DetailItemMapper
 import com.fighiera.startrip.detail.model.DetailHeaderItem
 import com.fighiera.startrip.detail.model.DetailItem
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.*
 
 class DetailViewModel(private val id: Int, private val useCase: DetailUseCase) : ViewModel() {
 
@@ -29,19 +26,21 @@ class DetailViewModel(private val id: Int, private val useCase: DetailUseCase) :
     val state: LiveData<Status>
         get() = _state
 
-    private var disposable: Disposable? = null
+
+    private val viewModelJob = Job()
+    private val fetchErrorHandler = CoroutineExceptionHandler { _, throwable -> onFetchError(throwable) }
+    private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob + fetchErrorHandler)
 
     init {
         fetchList()
     }
 
     fun fetchList() {
-        disposable?.dispose()
-        disposable = useCase.getTrip(id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { _state.value = Status.LOADING }
-            .subscribe(::onFetchSuccess, ::onFetchError)
+        viewModelScope.launch {
+            _state.value = Status.LOADING
+            val trip = withContext(Dispatchers.IO) { useCase.getTrip(id) }
+            onFetchSuccess(trip)
+        }
     }
 
     private fun onFetchSuccess(detail: TripItemDomain) {
@@ -56,6 +55,6 @@ class DetailViewModel(private val id: Int, private val useCase: DetailUseCase) :
     }
 
     override fun onCleared() {
-        disposable?.dispose()
+        viewModelJob.cancel()
     }
 }

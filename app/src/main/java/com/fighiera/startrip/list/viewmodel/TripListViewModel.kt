@@ -4,16 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.fighiera.domain.entities.TripListDomain
 import com.fighiera.domain.usecases.TripListUseCase
-import com.fighiera.startrip.common.tools.SingleLiveEvent
 import com.fighiera.startrip.common.entities.Status
+import com.fighiera.startrip.common.tools.SingleLiveEvent
 import com.fighiera.startrip.list.entities.TripListItemUi
 import com.fighiera.startrip.list.mapper.TripListMapper
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.*
 
 class TripListViewModel(private val useCase: TripListUseCase) : ViewModel() {
 
@@ -28,19 +25,21 @@ class TripListViewModel(private val useCase: TripListUseCase) : ViewModel() {
     val displayDetail: LiveData<Int>
         get() = _displayDetail
 
-    private var disposable: Disposable? = null
+
+    private val viewModelJob = Job()
+    private val fetchErrorHandler = CoroutineExceptionHandler { _, throwable -> onFetchError(throwable) }
+    private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob + fetchErrorHandler)
 
     init {
         fetchList()
     }
 
     fun fetchList() {
-        disposable?.dispose()
-        disposable = useCase.getTripList()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { _state.value = Status.LOADING }
-            .subscribe(::onFetchSuccess, ::onFetchError)
+        viewModelScope.launch {
+            _state.value = Status.LOADING
+            val tripList = withContext(Dispatchers.IO) { useCase.getTripList() }
+            onFetchSuccess(tripList)
+        }
     }
 
     private fun onFetchSuccess(tripList: TripListDomain) {
@@ -58,12 +57,6 @@ class TripListViewModel(private val useCase: TripListUseCase) : ViewModel() {
     }
 
     override fun onCleared() {
-        disposable?.dispose()
-    }
-}
-
-class TripListViewModelFactory(private val useCase: TripListUseCase) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(p0: Class<T>): T {
-        @Suppress("UNCHECKED_CAST") return TripListViewModel(useCase) as T
+        viewModelJob.cancel()
     }
 }

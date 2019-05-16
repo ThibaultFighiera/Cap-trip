@@ -2,11 +2,10 @@ package com.fighiera.domain.repositories
 
 import com.fighiera.domain.entities.TripItemDomain
 import com.fighiera.domain.entities.TripListDomain
-import io.reactivex.Single
 
 interface TripRepository {
 
-    fun fetchTripList() : Single<TripListDomain>
+    suspend fun fetchTripList(): TripListDomain
 
-    fun fetchTrip(id: Int): Single<TripItemDomain>
+    suspend fun fetchTrip(id: Int): TripItemDomain
 }
