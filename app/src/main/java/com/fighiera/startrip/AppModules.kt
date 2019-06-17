@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 object AppModules {
 
-    fun get(): Module = module {
+    fun getModule(): Module = module {
         factory<TripRepository> { TripRepositoryImpl() }
     }
 }

@@ -41,6 +41,7 @@ dependencies {
 
     // Arch component
     implementation "androidx.lifecycle:lifecycle-extensions:$versions.arch_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_viewmodel_ktx"
 
     // UI
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"

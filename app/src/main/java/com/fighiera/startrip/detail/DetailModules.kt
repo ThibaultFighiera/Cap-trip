@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 object DetailModules {
 
-    fun get() = module {
+    fun getModule() = module {
         scope(named<DetailActivity>()) {
             viewModel { (id: Int) -> DetailViewModel(id, useCase = get()) }
             scoped { DetailUseCase(tripRepository = get()) }

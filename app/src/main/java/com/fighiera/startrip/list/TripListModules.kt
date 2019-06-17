@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 object TripListModules {
 
-    fun get() = module {
+    fun getModule() = module {
         scope(named<TripListActivity>()) {
             viewModel { TripListViewModel(useCase = get()) }
             scoped { TripListUseCase(tripRepository = get()) }
