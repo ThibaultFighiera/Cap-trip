@@ -11,6 +11,7 @@ ext {
     annotation = "1.0.1"
     media = "1.0.0"
     lifecycle_extensions = "2.0.0"
+    lifecycle_viewmodel_ktx = "2.2.0-alpha01"
     viewmodel = "2.0.0"
     legacy_support_v4 = "1.0.0"
 
@@ -18,14 +19,14 @@ ext {
     picasso = "2.71828"
 
     // Asynchronicity
-    kotlinx_coroutines_android = "1.1.1"
+    kotlinx_coroutines_android = "1.2.1"
 
     // Network
     gson = "2.8.5"
     okhttp = "3.13.1"
 
     // Dependency Injection
-    koin_version = '2.0.0-beta-3'
+    koin_version = '2.0.1'
 
     // ensemble d'alias permettant d'avoir des nom plus parlant que ceux du package
     // => rajouter de nouvelles entrées que si le nom de base n'est pas parlant

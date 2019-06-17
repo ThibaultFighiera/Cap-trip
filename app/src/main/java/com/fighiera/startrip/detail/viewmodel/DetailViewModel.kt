@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.fighiera.domain.entities.TripItemDomain
 import com.fighiera.domain.usecases.DetailUseCase
 import com.fighiera.startrip.common.entities.Status
@@ -11,7 +12,7 @@ import com.fighiera.startrip.detail.mapper.DetailHeaderMapper
 import com.fighiera.startrip.detail.mapper.DetailItemMapper
 import com.fighiera.startrip.detail.model.DetailHeaderItem
 import com.fighiera.startrip.detail.model.DetailItem
-import kotlinx.coroutines.*
+import kotlinx.coroutines.launch
 
 class DetailViewModel(private val id: Int, private val useCase: DetailUseCase) : ViewModel() {
 
@@ -26,20 +27,19 @@ class DetailViewModel(private val id: Int, private val useCase: DetailUseCase) :
     val state: LiveData<Status>
         get() = _state
 
+    fun fetchTrip() {
+        if(_trip.value != null){
+            return
+        }
 
-    private val viewModelJob = Job()
-    private val fetchErrorHandler = CoroutineExceptionHandler { _, throwable -> onFetchError(throwable) }
-    private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob + fetchErrorHandler)
-
-    init {
-        fetchList()
-    }
-
-    fun fetchList() {
         viewModelScope.launch {
-            _state.value = Status.LOADING
-            val trip = withContext(Dispatchers.IO) { useCase.getTrip(id) }
-            onFetchSuccess(trip)
+            try {
+                _state.value = Status.LOADING
+                val trip = useCase.getTrip(id)
+                onFetchSuccess(trip)
+            } catch (throwable: Throwable) {
+                onFetchError(throwable)
+            }
         }
     }
 
@@ -52,9 +52,5 @@ class DetailViewModel(private val id: Int, private val useCase: DetailUseCase) :
     private fun onFetchError(throwable: Throwable?) {
         Log.e("Error", throwable?.message)
         _state.value = Status.ERROR
-    }
-
-    override fun onCleared() {
-        viewModelJob.cancel()
     }
 }

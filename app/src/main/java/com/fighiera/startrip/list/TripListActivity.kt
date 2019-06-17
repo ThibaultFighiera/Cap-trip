@@ -10,12 +10,10 @@ import com.fighiera.startrip.list.ui.TripListViewHolder
 import com.fighiera.startrip.list.viewmodel.TripListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.scope.currentScope
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.androidx.viewmodel.ext.koin.getViewModel
 
 class TripListActivity : AppCompatActivity() {
 
-    private val viewModel by viewModel<TripListViewModel>(scope = currentScope)
+    private val viewModel: TripListViewModel by currentScope.inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +24,9 @@ class TripListActivity : AppCompatActivity() {
     private fun initialize() {
         TripListViewHolder(tripList, this, viewModel)
         ErrorViewHolder(window.decorView.rootView, tripList, this, viewModel.state) { viewModel.fetchList() }
-        viewModel.displayDetail.observe(this, Observer { DetailActivity.start(this, it) })
+        viewModel.run {
+            displayTrip.observe(this@TripListActivity, Observer { DetailActivity.start(this@TripListActivity, it) })
+            fetchList()
+        }
     }
 }

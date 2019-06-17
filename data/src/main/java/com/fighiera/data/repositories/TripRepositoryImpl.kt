@@ -9,28 +9,34 @@ import com.fighiera.domain.entities.TripListDomain
 import com.fighiera.domain.repositories.TripRepository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class TripRepositoryImpl : TripRepository {
 
     override suspend fun fetchTripList(): TripListDomain {
-        val response = RemoteRequester()
-            .apply { addPathSegment(SCHEME_TRIP_LIST) }
-            .requestJson()
-        val postsType = object : TypeToken<List<TripListItem>>() {}.type
-        val modelData = Gson().fromJson<List<TripListItem>>(response, postsType)
-        return ListModelMapper()(modelData)
+        return withContext(Dispatchers.IO) {
+            val response = RemoteRequester()
+                .apply { addPathSegment(SCHEME_TRIP_LIST) }
+                .requestJson()
+            val postsType = object : TypeToken<List<TripListItem>>() {}.type
+            val modelData = Gson().fromJson<List<TripListItem>>(response, postsType)
+            ListModelMapper()(modelData)
+        }
     }
 
     override suspend fun fetchTrip(id: Int): TripItemDomain {
-        val response = RemoteRequester()
-            .apply {
-                addPathSegment(SCHEME_TRIPS)
-                addPathSegment(id.toString())
-            }
-            .requestJson()
+        return withContext(Dispatchers.IO) {
+            val response = RemoteRequester()
+                .apply {
+                    addPathSegment(SCHEME_TRIPS)
+                    addPathSegment(id.toString())
+                }
+                .requestJson()
 
-        val modelData = Gson().fromJson<TripListItem>(response, TripListItem::class.java)
-        return TripListItemMapper()(modelData)
+            val modelData = Gson().fromJson<TripListItem>(response, TripListItem::class.java)
+            TripListItemMapper()(modelData)
+        }
     }
 
     companion object {
