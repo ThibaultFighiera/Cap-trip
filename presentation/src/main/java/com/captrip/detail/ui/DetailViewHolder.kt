@@ -4,11 +4,11 @@ import android.view.View
 import androidx.annotation.StringRes
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import com.captrip.R
 import com.captrip.detail.model.DetailItem
 import com.captrip.detail.model.LocationDetail
 import com.captrip.detail.viewmodel.DetailViewModel
 import com.captrip.ext.ImageDownloader
+import com.captrip.presentation.R
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.detail_location.*
 import kotlinx.android.synthetic.main.detail_pilot.*

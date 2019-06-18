@@ -3,10 +3,10 @@ package com.captrip.detail.mapper
 import com.captrip.domain.entities.DistanceDomain
 import com.captrip.domain.entities.LocationDomain
 import com.captrip.domain.entities.TripItemDomain
-import com.captrip.R
 import com.captrip.common.mappers.PilotMapper
 import com.captrip.detail.model.DetailItem
 import com.captrip.detail.model.LocationDetail
+import com.captrip.presentation.R
 import java.text.DateFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat

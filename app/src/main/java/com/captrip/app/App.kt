@@ -1,6 +1,7 @@
-package com.captrip
+package com.captrip.app
 
 import android.app.Application
+import com.captrip.BuildConfig
 import com.captrip.detail.DetailModules
 import com.captrip.list.TripListModules
 import org.koin.android.ext.koin.androidContext

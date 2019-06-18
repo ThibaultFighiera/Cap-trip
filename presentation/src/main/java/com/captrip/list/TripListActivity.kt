@@ -3,11 +3,11 @@ package com.captrip.list
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.captrip.R
 import com.captrip.common.ui.ErrorViewHolder
 import com.captrip.detail.DetailActivity
 import com.captrip.list.ui.TripListViewHolder
 import com.captrip.list.viewmodel.TripListViewModel
+import com.captrip.presentation.R
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.scope.currentScope
 

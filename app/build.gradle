@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -12,6 +12,7 @@ android {
     }
 
     defaultConfig {
+        applicationId "com.captrip"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
         versionCode 1
@@ -28,22 +29,12 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':presentation')
+    implementation project(path: ':data')
     implementation project(path: ':domain')
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    // Core
-    implementation "androidx.appcompat:appcompat:$appcompat"
-    implementation "androidx.annotation:annotation:$annotation"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    // Arch component
-    implementation "androidx.lifecycle:lifecycle-extensions:$versions.arch_lifecycle"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_viewmodel_ktx"
-
-    // UI
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
     implementation "com.google.android.material:material:$material"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Dependency Injection
     implementation "org.koin:koin-android:$koin_version"
@@ -52,20 +43,11 @@ dependencies {
     // Koin AndroidX ViewModel feature
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
-    // Picasso
-    implementation "com.squareup.picasso:picasso:$picasso"
-
-    // Asynchronicity
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
-
+    // Tests
     testImplementation "junit:junit:$test_versions.junit"
     testImplementation("org.mockito:mockito-inline:$test_versions.mockito_core")
     androidTestImplementation "androidx.test.ext:junit:$test_versions.xJunit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$test_versions.espresso"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$test_versions.espresso"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$test_versions.espresso"
-}
-
-androidExtensions {
-    experimental = true
 }

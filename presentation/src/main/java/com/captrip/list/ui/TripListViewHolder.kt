@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.captrip.R
 import com.captrip.ext.ImageDownloader
 import com.captrip.list.entities.TripListItemUi
 import com.captrip.list.viewmodel.TripListViewModel
+import com.captrip.presentation.R
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.trip_item.*

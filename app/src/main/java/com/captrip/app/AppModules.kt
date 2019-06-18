@@ -1,4 +1,4 @@
-package com.captrip
+package com.captrip.app
 
 import com.captrip.data.repositories.TripRepositoryImpl
 import com.captrip.domain.repositories.TripRepository

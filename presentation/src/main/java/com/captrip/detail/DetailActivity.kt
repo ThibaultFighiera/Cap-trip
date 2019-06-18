@@ -4,11 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.captrip.R
 import com.captrip.common.ui.ErrorViewHolder
 import com.captrip.detail.ui.DetailHeaderViewHolder
 import com.captrip.detail.ui.DetailViewHolder
 import com.captrip.detail.viewmodel.DetailViewModel
+import com.captrip.presentation.R
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.detail_toolbar.*
 import org.koin.androidx.scope.currentScope

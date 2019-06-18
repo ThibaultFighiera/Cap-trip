@@ -7,6 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import com.captrip.detail.DetailActivity
+import com.captrip.presentation.R
 import org.junit.Rule
 import org.junit.Test
 import java.lang.Thread.sleep
