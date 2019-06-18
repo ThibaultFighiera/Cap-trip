@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.fighiera.startrip">
+          package="com.captrip">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -8,7 +8,7 @@
     <application
             android:allowBackup="true"
             android:fullBackupContent="true"
-            android:name=".App"
+            android:name="com.captrip.app.App"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
@@ -16,7 +16,7 @@
             android:theme="@style/AppTheme">
 
         <activity
-                android:name="com.fighiera.startrip.splash.SplashScreen"
+                android:name="com.captrip.splash.SplashScreen"
                 android:noHistory="true"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -33,20 +33,20 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
 
                 <data android:scheme="https"/>
-                <data android:host="@string/intent_url_host_startrip"/>
+                <data android:host="@string/intent_url_host_captrip"/>
                 <data android:pathPrefix="@string/intent_url_path_trip"/>
             </intent-filter>
         </activity>
 
         <activity
-                android:name="com.fighiera.startrip.list.TripListActivity"
+                android:name="com.captrip.list.TripListActivity"
                 android:label="@string/last_trips"
                 android:launchMode="singleTop"/>
 
         <activity
-                android:name="com.fighiera.startrip.detail.DetailActivity"
+                android:name="com.captrip.detail.DetailActivity"
                 android:label=""
-                android:parentActivityName="com.fighiera.startrip.list.TripListActivity"
+                android:parentActivityName="com.captrip.list.TripListActivity"
                 android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
